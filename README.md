@@ -51,13 +51,13 @@ An AI-powered web application that evaluates resumes against job descriptions, c
 
 ### Home Page
 
-![Home Page](screenshots/home.png)
+![Home Page](screenshots/home_page.png)
 
 ---
 
 ### Analysis Results
 
-![Results Page](screenshots/results.png)
+![Results Page](screenshots/results_page.png)
 
 ---
 
