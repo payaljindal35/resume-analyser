@@ -87,3 +87,6 @@ def analyze():
         found=found,
         missing=missing
     )
+
+if __name__ == "__main__":
+    app.run(debug=True)
