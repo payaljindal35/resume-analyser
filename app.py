@@ -34,3 +34,25 @@ def extract_text(pdf_path):
     for page in pdf:
         text += page.get_text()
     return text.lower()
+
+def analyze_resume(resume_text, job_description):
+    resume_text = resume_text.lower()
+    job_description = job_description.lower()
+
+    found_skills = []
+    missing_skills = []
+
+    for skill in skills_database:
+        if skill in resume_text:
+            found_skills.append(skill)
+        if skill in job_description and skill not in resume_text:
+            missing_skills.append(skill)
+    
+    total_required = len(found_skills) + len(missing_skills)
+
+    if total_required == 0:
+        score = 0
+    else:
+        score = int((len(found_skills) / total_required) * 100)
+
+    return score, found_skills, missing_skills
