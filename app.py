@@ -8,20 +8,29 @@ UPLOAD_FOLDER = 'resumes'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 skills_database = [
-    'Python', 
-    'Java', 
-    'C++', 
-    'JavaScript', 
-    'HTML', 
-    'CSS', 
-    'SQL', 
-    'Machine Learning', 
-    'Data Analysis', 
-    'Django',
-    'Excel',
-    'Power BI',
-    'React',
-    'Flask',
-    'aws',
-    'git'
+    "python", 
+    "java", 
+    "c++", 
+    "javascript", 
+    "html", 
+    "css", 
+    "sql", 
+    "machine learning", 
+    "data analysis", 
+    "django",
+    "excel",
+    "power bi",
+    "react",
+    "flask",
+    "aws",
+    "git"
 ]
+
+def extract_text(pdf_path):
+    text = ""
+    
+    pdf = fitz.open(pdf_path)
+
+    for page in pdf:
+        text += page.get_text()
+    return text.lower()
