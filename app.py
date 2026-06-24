@@ -56,3 +56,7 @@ def analyze_resume(resume_text, job_description):
         score = int((len(found_skills) / total_required) * 100)
 
     return score, found_skills, missing_skills
+
+@app.route("/")
+def home():
+    return render_template("index.html")
