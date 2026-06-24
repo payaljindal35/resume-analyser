@@ -55,7 +55,13 @@ def analyze_resume(resume_text, job_description):
     else:
         score = int((len(found_skills) / total_required) * 100)
 
-    return score, found_skills, missing_skills
+    suggestions = []
+
+    for skill in missing_skills:
+        suggestions.append(
+            f"Consider learning {skill} to improve your job match."
+        )
+    return score, found_skills, missing_skills, suggestions
 
 @app.route("/")
 def home():
@@ -76,7 +82,7 @@ def analyze():
 
     resume_text = extract_text(filepath)
 
-    score, found, missing = analyze_resume(
+    score, found, missing, suggestions = analyze_resume(
         resume_text,
         job_description
     )
@@ -85,8 +91,13 @@ def analyze():
         "result.html",
         score=score,
         found=found,
-        missing=missing
+        missing=missing,
+        suggestions = suggestions
     )
+
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
+
