@@ -60,3 +60,30 @@ def analyze_resume(resume_text, job_description):
 @app.route("/")
 def home():
     return render_template("index.html")
+
+@app.route("/analyze", methods=["POST"])
+def analyze():
+
+    resume = request.files["resume"]
+    job_description = request.form["job_description"]
+
+    filepath = os.path.join(
+        UPLOAD_FOLDER,
+        resume.filename
+    )
+
+    resume.save(filepath)
+
+    resume_text = extract_text(filepath)
+
+    score, found, missing = analyze_resume(
+        resume_text,
+        job_description
+    )
+
+    return render_template(
+        "result.html",
+        score=score,
+        found=found,
+        missing=missing
+    )
